@@ -57,4 +57,8 @@ if st.button("Classify"):
     else:
         cleaned = clean_text(user_input)
         vectorized = vectorizer.transform([cleaned])
-        pre
+        prediction = model.predict(vectorized)[0]
+        if prediction == 1:
+            st.error("🚫 This message is **Spam**.")
+        else:
+            st.success("✅ This message is **Not Spam (Ham)**.")
